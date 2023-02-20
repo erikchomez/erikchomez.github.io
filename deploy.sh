@@ -18,7 +18,7 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-sudo git push origin main
+sudo git push origin main -f
 
 # Come Back up to the Project Root
 cd ..
