@@ -13,7 +13,7 @@ params:
   # Profile card
   profile:
     name: "Erik Gomez"
-    photo: /images/about_me.JPG
+    photo: /images/profile.png
     tagline: "I build scalable, reliable distributed systems."
     social:
       - icon: github
@@ -33,10 +33,10 @@ params:
     stats:
       - value: "4+"
         label: "Years of experience"
-      - value: "4,000"
-        label: "Hosts supported at scale"
-      - value: "65%"
-        label: "Less locking overhead"
+      - value: "4x"
+        label: "Host capacity scaled"
+      - value: "30%"
+        label: "Faster at scale"
     tiles:
       - icon: server
         text: "Distributed systems, fault tolerance"
