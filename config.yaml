@@ -1,368 +1,137 @@
 baseURL: "https://www.erikgomez.me/"
-languageCode: "en-us"
+locale: "en-us"
 title: "Erik Gomez"
-theme: hugo-profile
 
-outputs:
-  home:
-    - "HTML"
-    - "RSS"
-    - "JSON"
-  page:
-    - "HTML"
-    - "RSS"
-
-Paginate: 3
+# The homepage is the only page; layouts live in ./layouts (no theme).
+disableKinds: ["taxonomy", "term", "rss", "section", "page"]
 enableRobotsTXT: true
-# disqusShortname: your-disqus-shortname
-# googleAnalytics: G-MEASUREMENT_ID
-
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
-
-Menus:
-  main:
-    - identifier: experience
-      name: Experience
-      title: Experience
-      url: /#experience
-      weight: 1
-    - identifier: deepdives
-      name: Deep Dives
-      title: Engineering Deep Dives
-      url: /#deepdives
-      weight: 2
-    - identifier: projects
-      name: Projects
-      title: Projects
-      url: /#projects
-      weight: 3
-    - identifier: about
-      name: About
-      title: About Me
-      url: /#about
-      weight: 4
-    - identifier: contact
-      name: Contact
-      title: Contact
-      url: /#contact
-      weight: 5
-    #Dropdown menu
-    # - identifier: dropdown
-    #   title: Example dropdown menu
-    #   name: Dropdown
-    #   weight: 3
-    # - identifier: dropdown1
-    #   title: example dropdown 1
-    #   name: example 1
-    #   url: /#
-    #   parent: dropdown
-    #   weight: 1
-    # - identifier: dropdown2
-    #   title: example dropdown 2
-    #   name: example 2
-    #   url: /#
-    #   parent: dropdown
-    #   weight: 2
 
 params:
-  title: "Erik Gomez"
-  description: "Erik Gomez - software engineer building reliable distributed systems and infrastructure lifecycle platforms."
-  # staticPath: ""  # The path to serve the static files from
+  description: "Erik Gomez - software engineer building scalable, reliable distributed systems and infrastructure lifecycle platforms."
   favicon: "/favicon.ico"
 
-  # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
-  # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
-  # Note the lack of "" in true, it should be of boolean type.
-  useBootstrapCDN: false
-
-  # If you want to load dynamically responsive images from Cloudinary
-  # This requires your images to be uploaded + hosted on Cloudinary
-  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
-  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
-
-  # Whether the fade animations on the home page will be enabled
-  animate: true
-
-  theme:
-    # disableThemeToggle: true
-    # defaultTheme: "light" # dark
-
-  font:
-    fontSize: 1rem # default: 1rem
-    fontWeight: 400 # default: 400
-    lineHeight: 1.5 # default: 1.5
-    textAlign: left # default: left
-
-  # color preference
-  # color:
-  #   textColor:
-  #   secondaryTextColor:
-  #   backgroundColor:
-  #   secondaryBackgroundColor:
-  #   primaryColor:
-  #   secondaryColor:
-
-  #   darkmode:
-  #     textColor:
-  #     secondaryTextColor:
-  #     backgroundColor:
-  #     secondaryBackgroundColor:
-  #     primaryColor:
-  #     secondaryColor:
-
-  # If you want to customize the menu, you can change it here
-  navbar:
-    align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
-    # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
-    # showBrandLogo: false # Show brand logo in nav bar | default is true
-    brandName: "Erik Gomez" # Brand name for the brand | default is the title variable
-    disableSearch: true
-    menus:
-      disableAbout: true
-      disableExperience: true
-      disableEducation: true
-      disableProjects: true
-      disableAchievements: true
-      disableContact: true
+  # Profile card
+  profile:
+    name: "Erik Gomez"
+    photo: /images/about_me.JPG
+    tagline: "I build scalable, reliable distributed systems."
+    social:
+      - icon: github
+        label: GitHub
+        url: https://github.com/erikchomez
+      - icon: linkedin
+        label: LinkedIn
+        url: https://www.linkedin.com/in/erik-gomez/
+      - icon: mail
+        label: Email
+        url: mailto:unierikgomez@gmail.com
 
   # Hero
   hero:
-    enable: true
-    intro: ""
-    title: "Hi, I'm Erik."
-    subtitle: "I build scalable, reliable distributed systems."
+    heading: ["Software", "Engineer"]
     content: "I specialize in backend engineering, distributed workflows, and cloud infrastructure. I enjoy solving complex engineering problems, improving system performance, and building reliable software at scale."
-    # image: /images/about_me.JPG
-    roundImage: true # Make hero image circular | default false
-    button:
-      enable: false
-      name: "Resume"
-      url: /resume/Erik_Gomez_Resume.pdf
-      download: true
-      newPage: false
-    socialLinks:
-      fontAwesomeIcons:
-        - icon: fab fa-github
-          url: https://github.com/erikchomez
-        - icon: fab fa-linkedin-in
-          url: "https://www.linkedin.com/in/erik-gomez/"
-        - icon: fa fa-envelope
-          url: "mailto:unierikgomez@gmail.com"
+    stats:
+      - value: "4+"
+        label: "Years of experience"
+      - value: "4,000"
+        label: "Hosts supported at scale"
+      - value: "65%"
+        label: "Less locking overhead"
+    tiles:
+      - icon: server
+        text: "Distributed systems, fault tolerance"
+        url: "#work"
+      - icon: code
+        text: "Java, Spring Boot, Kubernetes"
+        url: "#tools"
 
-  # About
-  about:
-    enable: true
-    title: "About Me"
-    image: /images/about_me.JPG
-    roundImage: true
-    content: |-
-      I'm a software engineer at [Broadcom](https://www.broadcom.com) (formerly VMware) in Palo Alto, CA, where I work on VMware Cloud Foundation. Most of my work is backend: designing services and APIs, orchestrating long-running workflows across microservices, and making them hold up under failure and at scale.
-
-      I studied computer science at the [University of California, Irvine](https://uci.edu/) (B.S., 2018 - 2021) with a focus on machine learning and computer vision, and I still enjoy projects where technology and art overlap.
-    skills:
-      enable: true
-      title: "Here are a few technologies I've been working with recently:"
-      items:
-        - "Java, Python, TypeScript"
-        - "Spring Boot, REST, OpenAPI"
-        - "Kubernetes, Docker"
-        - "Netflix Conductor"
-        - "PostgreSQL"
-        - "JProfiler, JMeter"
-
-  # Experience
-  experience:
-    enable: true
-    # title: "Custom Name"
-    items:
-      - job: "Software Engineer"
-        company: "Broadcom (formerly VMware)"
-        companyUrl: "https://www.broadcom.com"
-        date: "Feb 2022 - present"
-        info:
-          enable: false
-        content: |-
-          - Designed and led end-to-end delivery of a fault-tolerant credential rotation platform spanning 2 independently deployed microservices and 12+ infrastructure components, built on a distributed, lock-coordinated scheduler with pluggable rotation strategies, retries, and cleanup guarantees.
-          - Owned the design and delivery of the VCFA component installation workflow on Kubernetes clusters using Netflix Conductor orchestration, enabling Day-N deployment by decoupling component installation from Day-0 provisioning.
-          - Led scalability improvements for VCF SDDC Manager, increasing supported capacity 4x from 1,000 to 4,000 hosts while improving performance by 30% through parallel host processing and optimized CPU- and memory-intensive APIs.
-          - Designed and delivered Fleet Build Service and SDDC Build Service, core services of VCF's greenfield Fleet LCM platform, enabling Day-0 and Day-N installation across 10+ components. Defined REST API contracts, service boundaries, and persistence models as requirements evolved.
-          - Resolved a critical JVM deadlock affecting multiple production customers using thread-dump analysis, JProfiler, and JMeter load testing; delivered a permanent fix with zero recurrence.
-          - Designed isolated workload domains with independent vSphere SSO domains, increasing workload-domain scalability 67% (15 to 25) and enabling stronger multi-tenant isolation.
-          - Redesigned topology locking with top-down resource traversal so only required resources are locked, reducing locking overhead by up to 65%.
-
-  # Engineering Deep Dives
-  deepdives:
-    enable: true
-    title: "Engineering Deep Dives"
+  # Selected work
+  work:
+    heading: ["Selected", "Work"]
     items:
       - title: Fault-Tolerant Credential Rotation
         content: Replacing non-expiring machine credentials safely across 2 independently deployed microservices and 12+ infrastructure components. A distributed, lock-coordinated scheduler drives pluggable rotation strategies with retries and cleanup guarantees.
         outcome: Designed, led, and owned in production
-        badges:
-          - "Distributed Systems"
-          - "Scheduling"
-          - "Fault Tolerance"
+        badges: ["Distributed Systems", "Scheduling", "Fault Tolerance"]
 
       - title: Scaling Infrastructure Management to 4,000 Hosts
         content: Raising the supported capacity of VCF SDDC Manager by introducing parallel host processing and optimizing CPU- and memory-intensive APIs and external service calls.
         outcome: 4x capacity (1,000 to 4,000 hosts), 30% faster
-        badges:
-          - "Java"
-          - "Concurrency"
-          - "Performance"
+        badges: ["Java", "Concurrency", "Performance"]
 
       - title: Hunting a Production JVM Deadlock
         content: Finding the root cause of a critical deadlock affecting multiple production customers by combining thread-dump analysis, JProfiler profiling, and JMeter load testing to reproduce it.
         outcome: Permanent fix, zero recurrence
-        badges:
-          - "JVM"
-          - "Profiling"
-          - "Debugging"
+        badges: ["JVM", "Profiling", "Debugging"]
 
-  # Education
-  education:
-    enable: false
-    # title: "Custom Name"
-    index: false
+  # Experience
+  experience:
+    heading: ["4+ Years of", "Experience"]
     items:
-      - title: "B.S. Computer Science"
-        school:
-          name: "University of California, Irvine"
-          url: "https://uci.edu/"
-        date: "2018 - 2021"
-        content: |-
-          Area of focus:
-            - AI
-            - Computer Vision
-            - Machine Learning
-            - Optimization Algorithms
-        # featuredLink:
-        #   enable: true
-        #   name: "Reinforcement learning project to teach an agent in Minecraft to optimize wheat harvesting"
-        #   url: "https://erikchomez.github.io/TheRealFarmerJohn/index.html"
+      - company: "Broadcom (formerly VMware)"
+        companyUrl: "https://www.broadcom.com"
+        job: "Software Engineer"
+        date: "Feb 2022 - Present"
+        content: "Backend engineer on VMware Cloud Foundation, building the services that install, scale, and manage the lifecycle of private cloud infrastructure."
+        highlights:
+          - Owned the design and delivery of the VCFA component installation workflow on Kubernetes clusters using Netflix Conductor orchestration, enabling Day-N deployment by decoupling component installation from Day-0 provisioning.
+          - Designed and delivered Fleet Build Service and SDDC Build Service, core services of VCF's greenfield Fleet LCM platform, enabling Day-0 and Day-N installation across 10+ components.
+          - Designed isolated workload domains with independent vSphere SSO domains, increasing workload-domain scalability 67% (15 to 25) and enabling stronger multi-tenant isolation.
+          - Redesigned topology locking with top-down resource traversal so only required resources are locked, reducing locking overhead by up to 65%.
 
-
-  # Achievements
-  # achievements:
-  #   enable: true
-  #   # title: "Custom Name"
-  #   items:
-  #     - title: Google kickstart runner
-  #       content: I solved all problems with optimal solution.
-  #       url: https://example.com
-  #     - title: Facebook Hackathon Winner
-  #       content: Developed a product using Artificial Intelligence.
-  #     - title: Hugo Profile
-  #       content: Developed a theme and getting 1K+ downloads per month.
-  #       url: "https://github.com/gurusabarish/hugo-profile"
-  #     - title: Microsoft Imagine Runner
-  #       content: We are developed a product which can help others.
-  #     - title: Google Summer of Code
-  #       content: Contributed to a open source project.
-  #       url: https://example.com
-
-  # projects
+  # Side projects
   projects:
-    enable: true
-    # title: "Custom Name"
+    heading: ["Side", "Projects"]
     items:
       - title: TheRealFarmerJohn
         content: A reinforcement learning project using Project Malmo to teach an agent to optimize for wheat harvesting.
         image: /images/farmer_john.png
-        featured:
-          name: Project Writeup
-          link: https://erikchomez.github.io/TheRealFarmerJohn/index.html
-        badges:
-          - "Project Malmo"
-          - "AI"
-          - "Reinforcement Learning"
-        links:
-          - icon: fab fa-github
-            url: https://github.com/erikchomez/TheRealFarmerJohn
-
+        url: https://github.com/erikchomez/TheRealFarmerJohn
       - title: 3D Object Reconstruction
         content: A pipeline for producing high-quality 3D reconstruction of an object from a collection of structured light scans.
         image: /images/3d_recon.png
-        # featured:
-        #   name: Demo
-        #   link: https://django-converter.herokuapp.com
-        badges:
-          - "OpenCV"
-          - "Computer Vision"
-        links:
-          - icon: fab fa-github
-            url: https://github.com/erikchomez/3D-Object-Reconstruction
-
+        url: https://github.com/erikchomez/3D-Object-Reconstruction
       - title: Face Morphing and Swapping
-        content: A project to develop a function to warp from one face to another using piecewise affine warping. Which will be used to perform morphing and face swapping.
+        content: Warping from one face to another using piecewise affine warping, used for morphing and face swapping.
         image: /images/face_morph.gif
-        badges:
-          - "Python"
-          - "Art&Code"
-        links:
-          - icon: fab fa-github
-            url: https://github.com/erikchomez/face-morphing-and-swapping
-
+        url: https://github.com/erikchomez/face-morphing-and-swapping
       - title: Pointillism Painting
         content: A simple Python program to convert images to pointillism style.
-        image: /images/tokyo_edit.gif
-        badges:
-          - "Python"
-          - "Art&Code"
-        links:
-          - icon: fab fa-github
-            url: https://github.com/erikchomez/Pointillism
+        image: /images/tokyo.png
+        url: https://github.com/erikchomez/Pointillism
 
+  # Tools
+  tools:
+    heading: ["Tools", "& Stack"]
+    items:
+      - name: Java
+        kind: Language
+      - name: Spring Boot
+        kind: Backend framework
+      - name: Kubernetes
+        kind: Infrastructure
+      - name: Netflix Conductor
+        kind: Workflow orchestration
+      - name: PostgreSQL
+        kind: Database
+      - name: JProfiler
+        kind: JVM profiling
+      - name: Python
+        kind: Language
+      - name: TypeScript
+        kind: Language
 
-  #Contact
+  # About
+  about:
+    heading: ["About", "Me"]
+    content: |-
+      I'm a software engineer at [Broadcom](https://www.broadcom.com) (formerly VMware) in Palo Alto, CA, where I work on VMware Cloud Foundation. Most of my work is backend: designing services and APIs, orchestrating long-running workflows across microservices, and making them hold up under failure and at scale.
+
+      I studied computer science at the [University of California, Irvine](https://uci.edu/) (B.S., 2018 - 2021) with a focus on machine learning and computer vision, and I still enjoy projects where technology and art overlap.
+
+  # Contact
   contact:
-    enable: true
-    # title: "Custom Name"
-    content: My inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!
+    heading: ["Let's", "Connect"]
+    content: My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
     email: unierikgomez@gmail.com
     btnName: Mail me
-    # formspree:
-    #   enable: true # `contact.email` value will be ignored
-    #   formId: abcdefgh # Take it from your form's endpoint, like 'https://formspree.io/f/abcdefgh'
-    #   emailCaption: "Enter your email address"
-    #   messageCaption: "Enter your message here"
-
-  footer:
-    recentPosts:
-      path: "blogs"
-      count: 3
-      title: Recent Posts
-      enable: false
-      disableFeaturedImage: false
-    socialNetworks:
-      github: https://github.com/erikchomez
-      linkedin: https://www.linkedin.com/in/erik-gomez/
-      instagram: https://www.instagram.com/erikchomez/
-
-  # List pages like blogs and posts
-  listPages:
-    disableFeaturedImage: false
-
-  # Single pages like blog and post
-  singlePages:
-    readTime:
-      enable: true
-      content: "min read"
-    scrollprogress:
-      enable: true
-
-  # For translations
-  terms:
-    read: "Read"
-    toc: "Table Of Contents"
-    copyright: "All rights reserved"
-    pageNotFound: "Page not found"
-    emailText: "Check out this site"
-
-  datesFormat:
-    article: "Jan 2, 2006"
-    articleList: "Jan 2, 2006"
-    articleRecent: "Jan 2, 2006"

@@ -1,25 +1,178 @@
-{{ define "head" }}
-<meta name="description" content={{ .Site.Params.description }}>
-<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/index.css" media="all">
-<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/projects.css" media="all">
-<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/deepdives.css" media="all">
-<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/overrides.css" media="all">
+<!DOCTYPE html>
+<html lang="en">
+{{- $p := .Site.Params }}
 
-<!-- fontawesome -->
-<script defer src="{{ .Site.Params.staticPath }}/fontawesome-5/all-5.15.4.js"></script>
-{{ end }}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ $p.description }}">
+    <meta property="og:title" content="{{ .Site.Title }}">
+    <meta property="og:description" content="{{ $p.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Site.BaseURL }}">
+    <link rel="icon" href="{{ $p.favicon }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="/css/site.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
 
-{{ define "title" }}
-{{ .Site.Title }}
-{{ end }}
+<body>
+    <nav class="nav" aria-label="Sections">
+        <a href="#top" aria-label="Home" title="Home">{{ partial "icon.html" "home" }}</a>
+        <a href="#work" aria-label="Selected work" title="Selected work">{{ partial "icon.html" "layers" }}</a>
+        <a href="#experience" aria-label="Experience" title="Experience">{{ partial "icon.html" "briefcase" }}</a>
+        <a href="#projects" aria-label="Side projects" title="Side projects">{{ partial "icon.html" "folder" }}</a>
+        <a href="#tools" aria-label="Tools" title="Tools">{{ partial "icon.html" "tool" }}</a>
+        <a href="#about" aria-label="About" title="About">{{ partial "icon.html" "user" }}</a>
+        <a href="#contact" aria-label="Contact" title="Contact">{{ partial "icon.html" "mail" }}</a>
+    </nav>
 
-{{ define "main" }}
-{{- partial "sections/hero/index.html" . -}}
-{{- partial "sections/experience.html" . -}}
-{{- partial "sections/deepdives.html" . -}}
-{{- partial "sections/projects.html" . -}}
-{{- partial "sections/about.html" . -}}
-{{- partial "sections/education.html" . -}}
-{{- partial "sections/achievements.html" . -}}
-{{- partial "sections/contact.html" . -}}
-{{ end }}
+    <div class="page" id="top">
+        <aside class="profile">
+            <div class="profile-card">
+                <img class="profile-photo" src="{{ $p.profile.photo }}" alt="{{ $p.profile.name }}" width="240" height="284">
+                <h1 class="profile-name">{{ $p.profile.name }}</h1>
+                <p class="profile-tagline">{{ $p.profile.tagline }}</p>
+                <div class="profile-social">
+                    {{- range $p.profile.social }}
+                    <a href="{{ .url }}" aria-label="{{ .label }}" title="{{ .label }}" {{ if not (hasPrefix .url "mailto:") }}target="_blank" rel="noopener"{{ end }}>{{ partial "icon.html" .icon }}</a>
+                    {{- end }}
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="hero">
+                {{ partial "heading.html" $p.hero.heading }}
+                <p class="lead reveal">{{ $p.hero.content }}</p>
+
+                <div class="stats reveal">
+                    {{- range $p.hero.stats }}
+                    <div class="stat">
+                        <div class="stat-value">{{ .value }}</div>
+                        <div class="stat-label">{{ .label }}</div>
+                    </div>
+                    {{- end }}
+                </div>
+
+                <div class="tiles reveal">
+                    {{- range $p.hero.tiles }}
+                    <a class="tile" href="{{ .url }}">
+                        {{ partial "icon.html" .icon }}
+                        <span class="tile-text">{{ .text }}</span>
+                        <span class="tile-arrow">{{ partial "icon.html" "arrow" }}</span>
+                    </a>
+                    {{- end }}
+                </div>
+            </section>
+
+            <section id="work">
+                {{ partial "heading.html" $p.work.heading }}
+                <div class="rows">
+                    {{- range $p.work.items }}
+                    <article class="row reveal">
+                        <h3 class="row-title">{{ .title }}</h3>
+                        <p class="row-text">{{ .content }}</p>
+                        <p class="row-outcome">{{ .outcome }}</p>
+                        <div class="badges">
+                            {{- range .badges }}
+                            <span class="badge">{{ . }}</span>
+                            {{- end }}
+                        </div>
+                    </article>
+                    {{- end }}
+                </div>
+            </section>
+
+            <section id="experience">
+                {{ partial "heading.html" $p.experience.heading }}
+                <div class="rows">
+                    {{- range $p.experience.items }}
+                    <article class="row reveal">
+                        <h3 class="row-title">
+                            <a href="{{ .companyUrl }}" target="_blank" rel="noopener">{{ .company }}</a>
+                        </h3>
+                        <p class="row-meta">{{ .job }} &middot; {{ .date }}</p>
+                        <p class="row-text">{{ .content }}</p>
+                        <ul class="row-list">
+                            {{- range .highlights }}
+                            <li>{{ . }}</li>
+                            {{- end }}
+                        </ul>
+                    </article>
+                    {{- end }}
+                </div>
+            </section>
+
+            <section id="projects">
+                {{ partial "heading.html" $p.projects.heading }}
+                <div class="rows">
+                    {{- range $p.projects.items }}
+                    <a class="row row-link row-media reveal" href="{{ .url }}" target="_blank" rel="noopener">
+                        <img class="row-thumb" src="{{ .image }}" alt="" loading="lazy" width="96" height="96">
+                        <div>
+                            <h3 class="row-title">{{ .title }}</h3>
+                            <p class="row-text">{{ .content }}</p>
+                        </div>
+                        <span class="row-arrow">{{ partial "icon.html" "arrow" }}</span>
+                    </a>
+                    {{- end }}
+                </div>
+            </section>
+
+            <section id="tools">
+                {{ partial "heading.html" $p.tools.heading }}
+                <div class="tools reveal">
+                    {{- range $p.tools.items }}
+                    <div class="tool">
+                        <span class="tool-mark" aria-hidden="true">{{ substr .name 0 1 }}</span>
+                        <div>
+                            <div class="tool-name">{{ .name }}</div>
+                            <div class="tool-kind">{{ .kind }}</div>
+                        </div>
+                    </div>
+                    {{- end }}
+                </div>
+            </section>
+
+            <section id="about">
+                {{ partial "heading.html" $p.about.heading }}
+                <div class="prose reveal">
+                    {{ $p.about.content | markdownify }}
+                </div>
+            </section>
+
+            <section id="contact">
+                {{ partial "heading.html" $p.contact.heading }}
+                <p class="lead reveal">{{ $p.contact.content }}</p>
+                <a class="button reveal" href="mailto:{{ $p.contact.email }}">{{ $p.contact.btnName }}</a>
+            </section>
+
+            <footer class="footer">
+                &copy; {{ now.Year }} {{ $p.profile.name }}
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Fade sections in as they scroll into view.
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+                });
+            }, { rootMargin: '0px 0px -8% 0px' });
+            items.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>
