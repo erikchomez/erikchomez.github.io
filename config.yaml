@@ -1,4 +1,4 @@
-baseURL: "http://example.org/"
+baseURL: "https://www.erikgomez.me/"
 languageCode: "en-us"
 title: "Erik Gomez"
 theme: hugo-profile
@@ -24,16 +24,31 @@ markup:
 
 Menus:
   main:
-    - identifier: blog
-      name: Blog
-      title: Blog posts
-      url: /blogs
+    - identifier: experience
+      name: Experience
+      title: Experience
+      url: /#experience
       weight: 1
-    - identifier: gallery
-      name: Gallery
-      title: Blog posts
-      url: /gallery
+    - identifier: deepdives
+      name: Deep Dives
+      title: Engineering Deep Dives
+      url: /#deepdives
       weight: 2
+    - identifier: projects
+      name: Projects
+      title: Projects
+      url: /#projects
+      weight: 3
+    - identifier: about
+      name: About
+      title: About Me
+      url: /#about
+      weight: 4
+    - identifier: contact
+      name: Contact
+      title: Contact
+      url: /#contact
+      weight: 5
     #Dropdown menu
     # - identifier: dropdown
     #   title: Example dropdown menu
@@ -54,7 +69,7 @@ Menus:
 
 params:
   title: "Erik Gomez"
-  description: Text about my cool site
+  description: "Erik Gomez - software engineer building reliable distributed systems and infrastructure lifecycle platforms."
   # staticPath: ""  # The path to serve the static files from
   favicon: "/favicon.ico"
 
@@ -104,28 +119,26 @@ params:
     # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
     # showBrandLogo: false # Show brand logo in nav bar | default is true
     brandName: "Erik Gomez" # Brand name for the brand | default is the title variable
-    disableSearch: false
+    disableSearch: true
     menus:
-      disableAbout: false
-      disableExperience: false
-      disableEducation: false
-      disableProjects: false
-      disableAchievements: false
-      disableContact: false
+      disableAbout: true
+      disableExperience: true
+      disableEducation: true
+      disableProjects: true
+      disableAchievements: true
+      disableContact: true
 
   # Hero
   hero:
     enable: true
-    intro: "Hi, my name is"
-    title: "Erik."
-    subtitle: "I am a fullstack software engineer."
-    content: "As a passionate software engineer, I enjoy learning new tools and frameworks to help me build scalable and robust systems.
-
-    \n\nWhat I'm currently reading: Designing Data-Intensive Applications"
+    intro: ""
+    title: "Hi, I'm Erik."
+    subtitle: "I build scalable, reliable distributed systems."
+    content: "I specialize in backend engineering, distributed workflows, and cloud infrastructure. I enjoy solving complex engineering problems, improving system performance, and building reliable software at scale."
     # image: /images/about_me.JPG
     roundImage: true # Make hero image circular | default false
     button:
-      enable: true
+      enable: false
       name: "Resume"
       url: /resume/Erik_Gomez_Resume.pdf
       download: true
@@ -135,10 +148,9 @@ params:
         - icon: fab fa-github
           url: https://github.com/erikchomez
         - icon: fab fa-linkedin-in
-          url: "https://example.com"
+          url: "https://www.linkedin.com/in/erik-gomez/"
         - icon: fa fa-envelope
-          url: "unierikgomez@gmail.com"
-        
+          url: "mailto:unierikgomez@gmail.com"
 
   # About
   about:
@@ -147,39 +159,72 @@ params:
     image: /images/about_me.JPG
     roundImage: true
     content: |-
-      I am a software developer with a passion for developing scalable and robust systems. I have a background in computer science with a focus in machine learning, and I have a strong interest in the intersection of technology and art. I am currently working as a software developer at [VMware](https://vmware.com) in Palo Alto, CA. 
+      I'm a software engineer at [Broadcom](https://www.broadcom.com) (formerly VMware) in Palo Alto, CA, where I work on VMware Cloud Foundation. Most of my work is backend: designing services and APIs, orchestrating long-running workflows across microservices, and making them hold up under failure and at scale.
 
-      I recently finished working on a project to optimize our internal resource lock manager, and will begin working on a new initiative to add workflows for adding, applying, and managing custom ISOs.
+      I studied computer science at the [University of California, Irvine](https://uci.edu/) (B.S., 2018 - 2021) with a focus on machine learning and computer vision, and I still enjoy projects where technology and art overlap.
     skills:
       enable: true
       title: "Here are a few technologies I've been working with recently:"
       items:
-        - "Java"
-        - "Maven"
-        - "Python"
-        - "Spring"
-        - "Typescript"
+        - "Java, Python, TypeScript"
+        - "Spring Boot, REST, OpenAPI"
+        - "Kubernetes, Docker"
+        - "Netflix Conductor"
         - "PostgreSQL"
+        - "JProfiler, JMeter"
 
   # Experience
   experience:
     enable: true
     # title: "Custom Name"
     items:
-      - job: "Software Developer II"
-        company: "VMware"
-        companyUrl: "https://vmware.com"
+      - job: "Software Engineer"
+        company: "Broadcom (formerly VMware)"
+        companyUrl: "https://www.broadcom.com"
         date: "Feb 2022 - present"
-        # TODO: add resume bullet points here
+        info:
+          enable: false
         content: |-
-          - Maintained and supported VCF, a distributed Java application with over 1 million lines of code, using Maven, PostgreSQL, and Spring
-          - Designed and implemented Jenkins CI pipelines to automate integration testing. Achieved an 80% increase in productivity and efficiency by streamlining the integration testing process through automation.
-          - Leveraged JProfiler and JMC to identify high memory and CPU usage workflows in scale environments. Implemented a redesigned frugal locking algorithm resulting in up to a 95% reduction in overhead.
+          - Designed and led end-to-end delivery of a fault-tolerant credential rotation platform spanning 2 independently deployed microservices and 12+ infrastructure components, built on a distributed, lock-coordinated scheduler with pluggable rotation strategies, retries, and cleanup guarantees.
+          - Owned the design and delivery of the VCFA component installation workflow on Kubernetes clusters using Netflix Conductor orchestration, enabling Day-N deployment by decoupling component installation from Day-0 provisioning.
+          - Led scalability improvements for VCF SDDC Manager, increasing supported capacity 4x from 1,000 to 4,000 hosts while improving performance by 30% through parallel host processing and optimized CPU- and memory-intensive APIs.
+          - Designed and delivered Fleet Build Service and SDDC Build Service, core services of VCF's greenfield Fleet LCM platform, enabling Day-0 and Day-N installation across 10+ components. Defined REST API contracts, service boundaries, and persistence models as requirements evolved.
+          - Resolved a critical JVM deadlock affecting multiple production customers using thread-dump analysis, JProfiler, and JMeter load testing; delivered a permanent fix with zero recurrence.
+          - Designed isolated workload domains with independent vSphere SSO domains, increasing workload-domain scalability 67% (15 to 25) and enabling stronger multi-tenant isolation.
+          - Redesigned topology locking with top-down resource traversal so only required resources are locked, reducing locking overhead by up to 65%.
 
+  # Engineering Deep Dives
+  deepdives:
+    enable: true
+    title: "Engineering Deep Dives"
+    items:
+      - title: Fault-Tolerant Credential Rotation
+        content: Replacing non-expiring machine credentials safely across 2 independently deployed microservices and 12+ infrastructure components. A distributed, lock-coordinated scheduler drives pluggable rotation strategies with retries and cleanup guarantees.
+        outcome: Designed, led, and owned in production
+        badges:
+          - "Distributed Systems"
+          - "Scheduling"
+          - "Fault Tolerance"
+
+      - title: Scaling Infrastructure Management to 4,000 Hosts
+        content: Raising the supported capacity of VCF SDDC Manager by introducing parallel host processing and optimizing CPU- and memory-intensive APIs and external service calls.
+        outcome: 4x capacity (1,000 to 4,000 hosts), 30% faster
+        badges:
+          - "Java"
+          - "Concurrency"
+          - "Performance"
+
+      - title: Hunting a Production JVM Deadlock
+        content: Finding the root cause of a critical deadlock affecting multiple production customers by combining thread-dump analysis, JProfiler profiling, and JMeter load testing to reproduce it.
+        outcome: Permanent fix, zero recurrence
+        badges:
+          - "JVM"
+          - "Profiling"
+          - "Debugging"
 
   # Education
   education:
-    enable: true
+    enable: false
     # title: "Custom Name"
     index: false
     items:
@@ -290,7 +335,7 @@ params:
       path: "blogs"
       count: 3
       title: Recent Posts
-      enable: true
+      enable: false
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/erikchomez
