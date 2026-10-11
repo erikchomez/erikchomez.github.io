@@ -54,19 +54,19 @@ params:
     heading: ["Selected", "Work"]
     items:
       - title: Fault-Tolerant Credential Rotation
-        content: Automating rotation of previously non-expiring credentials across 12+ infrastructure components, deployed across independently managed Fleet and SDDC microservices in Kubernetes. Per-instance schedulers use lock-based coordination, pluggable rotation strategies, retries, and cleanup safeguards.
-        outcome: Designed, led, and owned in production
+        content: Automating rotation of previously non-expiring credentials across 12+ infrastructure components, spanning Fleet Lifecycle and SDDC Lifecycle microservices in Kubernetes. Per-instance schedulers use lock-based coordination, pluggable rotation strategies, retries, and cleanup safeguards.
+        outcome: Designed and led end-to-end delivery
         badges: ["Distributed Systems", "Kubernetes", "Fault Tolerance"]
-
-      - title: Retry Framework for Distributed Upgrade Workflows
-        content: A reusable framework for multi-service upgrade workflows that centralizes transient failure classification and recovery logic for API-triggered operations and asynchronous task polling, with configurable retries.
-        outcome: Upgrades that ride out downstream service outages
-        badges: ["Resilience", "Microservices", "Async Workflows"]
 
       - title: Scaling Infrastructure Management to 4,000 Hosts
         content: Raising the supported capacity of VCF SDDC Manager by introducing parallel host processing and optimizing CPU- and memory-intensive APIs and external service calls.
         outcome: 4x capacity (1,000 to 4,000 hosts), 30% faster
         badges: ["Java", "Concurrency", "Performance"]
+
+      - title: Retry Framework for Distributed Upgrade Workflows
+        content: A reusable framework that centralizes transient failure classification and recovery logic for API-triggered operations and asynchronous task polling. Validated with Chaos Mesh pod-failure injection, reproducing customer-observed failure scenarios.
+        outcome: Recovers from downstream outages of up to 12 minutes
+        badges: ["Resilience", "Chaos Testing", "Async Workflows"]
 
       - title: Hunting a Production JVM Deadlock
         content: Finding the root cause of a critical deadlock affecting multiple production customers by combining thread-dump analysis, JProfiler profiling, and JMeter load testing to reproduce it.
@@ -83,8 +83,8 @@ params:
         date: "Feb 2022 - Present"
         content: "Backend engineer on VMware Cloud Foundation, building the services that install, scale, and manage the lifecycle of private cloud infrastructure."
         highlights:
-          - Owned the design and delivery of the VCFA component installation workflow on Kubernetes clusters using Netflix Conductor orchestration, enabling Day-N deployment by decoupling component installation from Day-0 provisioning.
-          - Designed and delivered Fleet Build Service and SDDC Build Service, core services of VCF's greenfield Fleet LCM platform, enabling Day-0 and Day-N installation across 10+ components.
+          - Owned end-to-end design and delivery of VCF Automation component installation workflows on Kubernetes using Netflix Conductor. Automated cluster bootstrapping and scale-up operations, enabling Day-N component deployments independent of Day-0 provisioning.
+          - Designed and delivered Fleet Build Service and SDDC Build Service for VCF's greenfield Fleet LCM platform, supporting Day-0 and Day-N installation across 12+ fleet- and instance-level components. Defined and evolved REST API contracts, service boundaries, and persistence models amid changing requirements.
           - Extended VCF Brownfield Import to support standalone hosts and single-host clusters, and designed a reusable guardrail framework to validate infrastructure invariants before import and Day-N operations.
           - Designed isolated workload domains with independent vSphere SSO domains, increasing workload-domain scalability 67% (15 to 25) and enabling stronger multi-tenant isolation.
           - Redesigned topology locking with top-down resource traversal so only required resources are locked, reducing locking overhead by up to 65%.

@@ -58,7 +58,7 @@
         </aside>
 
         <main class="content">
-            <section class="hero">
+            <section class="hero" data-nav="top">
                 {{ partial "heading.html" $p.hero.heading }}
                 <p class="lead reveal">{{ $p.hero.content }}</p>
 
@@ -187,6 +187,36 @@
                 });
             }, { rootMargin: '0px 0px -8% 0px' });
             items.forEach(function (el) { io.observe(el); });
+        })();
+
+        // Highlight the nav icon for the section currently in view.
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+            var targets = links.map(function (a) {
+                var id = a.getAttribute('href').slice(1);
+                return document.querySelector('[data-nav="' + id + '"]') || document.getElementById(id);
+            });
+            var ticking = false;
+            function update() {
+                ticking = false;
+                var line = window.innerHeight * 0.4;
+                var current = 0;
+                targets.forEach(function (el, i) {
+                    if (el && el.getBoundingClientRect().top <= line) { current = i; }
+                });
+                if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+                    current = links.length - 1;
+                }
+                links.forEach(function (a, i) {
+                    a.classList.toggle('active', i === current);
+                    if (i === current) { a.setAttribute('aria-current', 'true'); } else { a.removeAttribute('aria-current'); }
+                });
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { ticking = true; requestAnimationFrame(update); }
+            }, { passive: true });
+            window.addEventListener('resize', update);
+            update();
         })();
     </script>
 </body>
