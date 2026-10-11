@@ -11,6 +11,13 @@
     <meta property="og:description" content="{{ $p.description }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Site.BaseURL }}">
+    {{- with $p.socialImage }}
+    <meta property="og:image" content="{{ . | absURL }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{- end }}
     <link rel="icon" href="{{ $p.favicon }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,9 +40,15 @@
     <div class="page" id="top">
         <aside class="profile">
             <div class="profile-card">
-                <img class="profile-photo" src="{{ $p.profile.photo }}" alt="{{ $p.profile.name }}" width="264" height="352">
+                {{- with resources.Get $p.profile.photo }}
+                {{- $photo := .Resize "528x webp q90" }}
+                <img class="profile-photo" src="{{ $photo.RelPermalink }}" alt="{{ $p.profile.name }}" width="264" height="352">
+                {{- end }}
                 <h1 class="profile-name">{{ $p.profile.name }}</h1>
                 <p class="profile-tagline">{{ $p.profile.tagline }}</p>
+                {{- with $p.profile.location }}
+                <p class="profile-location">{{ . }}</p>
+                {{- end }}
                 <div class="profile-social">
                     {{- range $p.profile.social }}
                     <a href="{{ .url }}" aria-label="{{ .label }}" title="{{ .label }}" {{ if not (hasPrefix .url "mailto:") }}target="_blank" rel="noopener"{{ end }}>{{ partial "icon.html" .icon }}</a>
@@ -112,7 +125,10 @@
                 <div class="rows">
                     {{- range $p.projects.items }}
                     <a class="row row-link row-media reveal" href="{{ .url }}" target="_blank" rel="noopener">
-                        <img class="row-thumb" src="{{ .image }}" alt="" loading="lazy" width="96" height="96">
+                        {{- with resources.Get .image }}
+                        {{- $thumb := .Fill "192x192 Center jpg q82" }}
+                        <img class="row-thumb" src="{{ $thumb.RelPermalink }}" alt="" loading="lazy" width="96" height="96">
+                        {{- end }}
                         <div>
                             <h3 class="row-title">{{ .title }}</h3>
                             <p class="row-text">{{ .content }}</p>
