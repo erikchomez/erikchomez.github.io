@@ -73,6 +73,11 @@ a {
     color: var(--accent-2);
 }
 
+.nav a.active {
+    background: var(--accent);
+    color: #fff;
+}
+
 /* layout */
 
 .page {
